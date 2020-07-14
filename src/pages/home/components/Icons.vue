@@ -2,7 +2,7 @@
 /* eslint-disable no-unreachable */
 <template>
   <div class="icons">
-    <swiper :options="swiperOptions">
+    <swiper>
       <swiper-slide v-for="(page, index) of pages" :key="index">
         <div class="icon" v-for="item in page" :key="item.id">
           <div class="icon-img">
@@ -20,11 +20,6 @@ export default {
   name: 'HomeIcons',
   data() {
     return {
-      wiperOptions: {
-        loop: true,
-        autoplay: 1500,
-        autoplayDisableOnInteraction: false,
-      },
       iconList: [
         {
           id: '001',
@@ -100,6 +95,8 @@ export default {
     width: 100%
     height: 0
     padding-bottom: 50%
+  .icons
+    margin-top: .1rem
     .icon
       overflow: hidden
       position: relative
