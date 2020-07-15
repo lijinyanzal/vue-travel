@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="weekendList.length">
     <div class="title">
       周末去哪儿
     </div>
-    <ul v-if="weekendList.length">
+    <ul >
       <li class="item border" v-for="item in weekendList" :key="item.id">
         <div class="item-img-wrapper">
           <img class="item-img" :src="item.imgUrl">

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="recommend" v-if="recommendList.length">
     <div class="title">
       热销推荐
     </div>
-    <ul v-if="recommendList.length">
+    <ul >
       <li class="item border" v-for="item in recommendList" :key="item.id">
         <img class="item-img" :src="item.imgUrl">
         <div class="item-info">
