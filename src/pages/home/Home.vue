@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <HomeHeader></HomeHeader>
-    <HomeSwiper></HomeSwiper>
-    <HomeIcons></HomeIcons>
-    <HomeRecomend></HomeRecomend>
-    <HomeWeekend></HomeWeekend>
+    <HomeHeader :city="city"></HomeHeader>
+    <HomeSwiper :swiperList="swiperList"></HomeSwiper>
+    <HomeIcons :iconList="iconList"></HomeIcons>
+    <HomeRecommend :recommendList="recommendList"></HomeRecommend>
+    <HomeWeekend :weekendList="weekendList"></HomeWeekend>
   </div>
   
 </template>
@@ -13,16 +13,46 @@
 import HomeHeader from './components/Header.vue'
 import HomeSwiper from './components/Swiper.vue'
 import HomeIcons from './components/Icons.vue'
-import HomeRecomend from './components/Recomend.vue'
+import HomeRecommend from './components/Recommend.vue'
 import HomeWeekend from './components/Weekend.vue'
+import axios from 'axios'
 export default {
   name: 'Home',
+  data() {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    }
+  },
   components: {
     HomeHeader,
     HomeSwiper,
     HomeIcons,
-    HomeRecomend,
+    HomeRecommend,
     HomeWeekend,
+  },
+  mounted() {
+    this.getHomeInfo()
+  },
+  methods: {
+    getHomeInfo() {
+      axios.get('api/mock/index.json')
+        .then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc(res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
   }
 }
 </script>
