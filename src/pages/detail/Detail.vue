@@ -1,11 +1,14 @@
 <template>
   <div>
     <DetailBanner :bannerImg="bannerImg"></DetailBanner>
+    <DetailHeader></DetailHeader>
+    <div class="content"></div>
   </div>
 </template>
 
 <script>
 import DetailBanner from './components/Banner.vue'
+import DetailHeader from './components/Header.vue'
 import axios from 'axios'
 
 export default {
@@ -17,6 +20,7 @@ export default {
   },
   components: {
     DetailBanner,
+    DetailHeader,
   },
   mounted() {
     this.getDetailInfo()
@@ -41,5 +45,6 @@ export default {
 
 <style lang='stylus' scoped>
 @import '~@/assets/styles/varibles.styl'
-
+  .content
+    height: 50rem
 </style>
