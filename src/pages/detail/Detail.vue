@@ -1,6 +1,10 @@
 <template>
   <div>
-    <DetailBanner :bannerImg="bannerImg"></DetailBanner>
+    <DetailBanner 
+      :bannerImg="bannerImg"
+      :sightName="sightName"
+      :gallaryImgs="gallaryImgs"
+    ></DetailBanner>
     <DetailHeader></DetailHeader>
     <div class="content">
       <DetailList :list="list"></DetailList>
@@ -18,36 +22,10 @@ export default {
   name: 'Detail',
   data() {
     return {
+      sightName: '',
       bannerImg: '',
-      list: [
-        {
-          title: '成人票',
-          children: [
-            {
-              title: '成人三馆联票',
-              children: [
-                {
-                  title: '成人三馆联票 - 某连锁店销售'
-                }
-              ]
-
-            },
-            {
-              title: '成人五馆联票'
-            }
-          ]
-        },
-        {
-          title: '儿童票',
-        },
-        {
-          title: '学生票',
-        },
-        {
-          title: '特惠票',
-        },
-
-      ]
+      gallaryImgs: [],
+      list: [],
     }
   },
   components: {
@@ -55,21 +33,27 @@ export default {
     DetailHeader,
     DetailList
   },
-  mounted() {
+
+  activated() {
     this.getDetailInfo()
   },
   methods: {
     getDetailInfo() {
-      axios.get('/api/mock/detail.json')
-        .then(this.getDetailInfoSucc)
-    },
-    getDetailInfoSucc(res) {
-      if (res.data) {
-        res = res.data
-        if (res && res.ret) {
-          const data = res.data
-          this.bannerImg = data.bannerImg
+      axios.get('/api/mock/detail.json?id=', {
+        params: {
+          id: this.$route.params.id
         }
+      })
+        .then(this.handleGetDetailInfoSucc)
+    },
+    handleGetDetailInfoSucc(res) {
+      res = res.data
+      if (res && res.ret) {
+        const data = res.data
+        this.bannerImg = data.bannerImg
+        this.sightName = data.sightName
+        this.gallaryImgs = data.gallaryImgs
+        this.list = data.categoryList
       }
     }
   }

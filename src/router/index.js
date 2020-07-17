@@ -23,8 +23,11 @@ const  router = new VueRouter({
       name: 'Detail',
       path: '/detail/:id',
       component: Detail,
-    }
-
-  ]
+    },
+  ],
+  // eslint-disable-next-line no-unused-vars
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 export default router
