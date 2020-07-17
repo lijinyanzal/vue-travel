@@ -58,7 +58,7 @@ export default {
 <style lang='stylus' scoped>
   @import '~@/assets/styles/varibles.styl'
   .gallary
-    z-index: 0
+    z-index: 99
     position: fixed
     display: flex
     flex-direction: column
@@ -67,7 +67,7 @@ export default {
     right: 0
     top: 0
     bottom: 0
-    background: #fff
+    background: #000
     .swiper
       width: 100%  
       overflow: inherit
