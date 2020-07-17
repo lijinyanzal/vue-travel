@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/pages/home/Home.vue'
-import City from '@/pages/city/City.vue'
-import Detail from '@/pages/detail/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -12,17 +9,17 @@ const  router = new VueRouter({
     {
       name: 'Home',
       path: '/',
-      component: Home,
+      component: () => import('@/pages/home/Home.vue'),
     },
     {
       name: 'City',
       path: '/city',
-      component: City,
+      component: () => import('@/pages/city/City.vue'),
     },
     {
       name: 'Detail',
       path: '/detail/:id',
-      component: Detail,
+      component: () => import('@/pages/detail/Detail.vue'),
     },
   ],
   // eslint-disable-next-line no-unused-vars
