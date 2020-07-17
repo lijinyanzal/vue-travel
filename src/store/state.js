@@ -9,5 +9,6 @@ try {
 }
 
 export default {
-  city: defaultCity
+  city: defaultCity,
+  detailInfo: {},
 }

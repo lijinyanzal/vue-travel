@@ -1,7 +1,17 @@
 const mockdata = require('./mock/index.json');
 const city = require('./mock/city.json');
+const detail = require('./mock/detail.json');
+
+const path = require('path')
 
 module.exports={
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "common": path.resolve(__dirname, 'src/pages/common')
+      }
+    }
+  },
   devServer: {
     port: 8080,
     before(app){
@@ -10,6 +20,9 @@ module.exports={
       })
       app.get('/mock/city.json',(req, res)=>{
         res.json(city);
+      })
+      app.get('/mock/detail.json',(req, res)=>{
+        res.json(detail);
       })
     },
     proxy: {
