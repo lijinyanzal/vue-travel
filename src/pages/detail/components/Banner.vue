@@ -6,7 +6,7 @@
       <img class="banner-img" :src="bannerImg"/>
       <div class="banner-info">
         <div class="banner-title">
-          大连圣亚海洋世界(AAAA景区)"
+          {{ sightName }}
         </div>
         <div class="banner-number">
           <span class="iconfont header-back banner-icon">&#xe635;</span>
@@ -24,7 +24,6 @@
 
 <script>
 import CommonGallary from 'common/gallary/Gallary.vue'
-import { mapState } from 'vuex'
 
 export default {
   name: 'DetailBanner',
@@ -34,21 +33,13 @@ export default {
     }
   },
   props: {
+    sightName: String,
     bannerImg: String,
+    gallaryImgs: Array,
   },
   components: {
     CommonGallary,
   },
-  computed: {
-    // eslint-disable-next-line vue/return-in-computed-property
-    ...mapState(['detailInfo']),
-    gallaryImgs() {
-      return this.detailInfo.gallaryImgs
-    }
-  },
-  mounted() {
-    this.$store.dispatch('getDetailInfo')
-  },  
   methods: {
     handleBannerClick() {
       this.showGallary = true
